@@ -27,3 +27,8 @@ app.get('/', (req,res) =>{
 app.listen(PORT, ()=>{
     console.log(`Server is on port ${PORT}`)
 })
+
+
+app.all('*', (req,res)=>{
+    res.status(404).send('Resource not found')
+})
