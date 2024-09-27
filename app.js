@@ -7,7 +7,7 @@ const path = require('path')
 
 //Middleware
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs')
 
 const getEvents = () => {
@@ -19,3 +19,11 @@ const getEvents = () => {
 const saveEvents = (events) => {
     fs.writeFileSync('./data/events.json', JSON.stringify(events, null, 2));
 };
+
+app.get('/', (req,res) =>{
+    res.render('pages/search')
+})
+
+app.listen(PORT, ()=>{
+    console.log(`Server is on port ${PORT}`)
+})

@@ -1,0 +1,9 @@
+.right-bookshelf {
+    position: relative;
+    float: right;
+}
+
+.left-bookshelf {
+    position: relative;
+    float: left;
+}
