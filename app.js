@@ -19,3 +19,11 @@ const getEvents = () => {
 const saveEvents = (events) => {
     fs.writeFileSync('./data/events.json', JSON.stringify(events, null, 2));
 };
+
+app.get('/', (req,res) =>{
+    res.render('/pages/search')
+})
+
+app.all('*', (req,res)=>{
+    res.status(404).send('Resource not found')
+})
