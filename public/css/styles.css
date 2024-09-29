@@ -1,9 +1,62 @@
+@font-face {
+    font-family: Kavoon;
+    src: url(kavoon.regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header{
+    background-color: #c49269;
+    position: absolute;
+    /* left: 50%; */
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left:42%;
+    padding-right: 50%;
+    z-index: -1;
+    font-family: Kavoon;
+    font-size: 40px;
+}
+
 .right-bookshelf {
-    position: relative;
-    float: right;
+    position: fixed;
+    top: 50%; /* Center it vertically */
+    right: 0; /* Stick it to the right */
+    transform: translateY(-50%);
+    width: 14%;
+    height: auto; 
+    z-index: 1; 
 }
 
 .left-bookshelf {
-    position: relative;
-    float: left;
+    position: fixed; 
+    top: 50%;
+    left: 0; /* Stick it to the left */
+    transform: translateY(-50%); 
+    width: 15%; 
+    height: auto;
+    z-index: 1;
+}
+
+.book{
+    width: 7%;
+    height: auto;
+    margin-left: 8%;
+    z-index: -1;
+
+}
+
+.sorting-bar{
+    margin-left: 24%;
+    margin-top: 10%;
+}
+
+a h1{
+    background-color: white;
+    position:absolute;
+    
 }
