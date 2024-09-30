@@ -57,6 +57,8 @@ header{
 
 a h1{
     background-color: white;
-    position:absolute;
-    
+    position: absolute;
+    display: flex;
+    margin-left: 8%;
+    z-index: 1;
 }
