@@ -4,6 +4,7 @@ const fs = require('fs');
 const app = express();
 const PORT = 5000;
 const path = require('path');
+const AdminToken = 'admin404'; // Use const for constants
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -13,6 +14,7 @@ app.set('view engine', 'ejs');
 const getBooks = () => {
     const data = fs.readFileSync('./db/books.json', 'utf8');
     return JSON.parse(data);
+    
 };
 
 const getAuthors = () => {
@@ -21,62 +23,100 @@ const getAuthors = () => {
 };
 
 // Function to save books back to the JSON file
-const saveBooks = (books) => {
-    fs.writeFileSync('./db/books.json', JSON.stringify(books, null, 2)); // Fix here
+const saveBooks = (newBook) => {
+    const books = getBooks();
+    books.push(newBook); 
+    fs.writeFileSync('./db/books.json', JSON.stringify(books, null, 2));
+};
+
+const saveAuthors = (authors) => {
+    fs.writeFileSync('./db/authors.json', JSON.stringify(authors, null, 2));
 };
 
 app.get('/', (req, res) => {
-    const books = getBooks();
-    const authors = getAuthors();
-
-    // Combine books with their authors
-    const booksWithAuthors = books.map(book => {
-        const author = authors.find(author => author.id === book.author_id);
-        return { ...book, authorName: author ? author.name : 'Unknown' };
-    });
-
-    res.render('pages/search', { books: booksWithAuthors }); 
+    res.render('pages/search'); 
 });
 
 app.get('/books', (req, res) => {
     const books = getBooks();
     const authors = getAuthors();
 
-    // Combine books with their authors
-    const booksWithAuthors = books.map(book => {
-        const author = authors.find(author => author.id === book.author_id);
-        return { ...book, authorName: author ? author.name : 'Unknown' };
+    const newBooks = books.map(book => {
+        const { id, title, author_id, published_year } = book;
+        const author = authors.find(author => author.id === author_id);
+        const authorName = author ? author.name : 'Unknown';
+        return { id, title, authorName, published_year };
     });
 
-    res.render('pages/search', { books: booksWithAuthors }); 
+    res.json(newBooks);
 });
 
+app.get('/api/books/:bookID', (req, res) => {
+    const books = getBooks();
+    const { bookID } = req.params;
+    const singleBook = books.find((book) => book.id === Number(bookID));
 
-
-app.get('/api/books/:sortID', (req, res) => {
-    const sortBy = req.params.sortID;
-    const search = req.query.search || ''; // Get the search query from query parameters
-    const books = getBooks(); // Get the books
-
-    // Filter books based on the search term
-    const filteredBooks = books.filter(book =>
-        book.title.toLowerCase().includes(search.toLowerCase())
-    );
-
-    // Sort based on the sorting criteria
-    let sortedBooks;
-    if (sortBy === 'author') {
-        sortedBooks = filteredBooks.sort((a, b) => a.author_id - b.author_id);
-    } else if (sortBy === 'date') {
-        sortedBooks = filteredBooks.sort((a, b) => a.published_year - b.published_year);
-    } else if (sortBy === 'alphabetically') {
-        sortedBooks = filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
-    } else {
-        sortedBooks = filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+    if (!singleBook) {
+        return res.status(404).send('Book not found/Item does not exist');
     }
 
-    res.json(sortedBooks);
+    return res.json(singleBook);
 });
+
+app.get('/api/books/add/:title/:authorName/:published_year/:token', (req, res) => {
+    const books = getBooks(); // Get existing books
+    let authors = getAuthors(); // Get existing authors
+
+    const { title, authorName, published_year, token } = req.params;
+
+    // Check for admin token
+    if (token !== AdminToken) {
+        return res.status(403).json({ message: 'No Permissions' });
+    }
+
+    // Check if the author already exists
+    const existingAuthor = authors.find(author => author.name.toLowerCase() === authorName.toLowerCase());
+
+    let authorId;
+    if (existingAuthor) {
+        authorId = existingAuthor.id;
+    } else {
+        // If author does not exist, add the new author
+        authorId = authors.length + 1; 
+        authors.push({ id: authorId, name: authorName });
+        
+        // Save updated authors to the JSON file
+        saveAuthors(authors);
+    }
+
+    // Create a new book object
+    const newBook = {id: books.length + 1, title, author_id: authorId, published_year: parseInt(published_year)};
+
+    saveBooks(newBook); // Save the new book
+
+    // Send a success response
+    res.status(201).json({ message: 'Book added successfully', book: newBook });
+});
+
+
+app.get('/api/books/delete/:title/:published_year/:token', (req, res) => {
+    const books = getBooks(); // Get existing books
+
+    const { title, published_year, token } = req.params;
+
+    // Check for admin token
+    if (token !== AdminToken) {
+        return res.status(403).json({ message: 'No Permissions' });
+    }
+
+    const newBook = {id: books.length + 1, title, author_id: authorId, published_year: parseInt(published_year)};
+
+    saveBooks(newBook); // Save the new book
+
+    // Send a success response
+    res.status(201).json({ message: 'Book added successfully', book: newBook });
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server is on port ${PORT}`);

@@ -8,29 +8,8 @@
 </head>
 <body>
     <%- include('../partials/header')%>
-    <img class="left-bookshelf" src="/images/left.png" alt="bookshelf">
-    <img class="right-bookshelf" src="/images/right.png" alt="bookshelf">
+    
 
-    <div class="sorting-bar">
-        <a href="author" onclick="sortBooks('author')">
-            <h1>Author</h1>
-            <img class="book" src="/images/book.webp" alt="book">
-        </a>
-    
-        <a href="date" onclick="sortBooks('date')">
-            <h1>Date</h1>
-            <img class="book" src="/images/book.webp" alt="book">
-        </a>
-    
-        <a href="genre" onclick="sortBooks('genre')">
-            <h1>Genre</h1>
-            <img class="book" src="/images/book.webp" alt="book">
-        </a>
-    
-        <a href="alphabetically" onclick="sortBooks('alphabetically')">
-            <h1>Alphabetically</h1>
-            <img class="book" src="/images/book.webp" alt="book">
-        </a>
         <div class="book-list">
             <ul id="bookList">
                 <% books.forEach(book => { %>
@@ -41,27 +20,6 @@
             </ul>
         </div>
 
-    </div>
-    <script>
-        function sortBooks(sortBy) {
-            const query = document.getElementById('query').value; // Get search term
-            const url = `/api/books/${sortBy}?search=${encodeURIComponent(query)}`;
-
-            // Fetch the sorted list of books
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    const bookList = document.getElementById('bookList');
-                    bookList.innerHTML = ''; // Clear existing list
-
-                    data.forEach(book => {
-                        const li = document.createElement('li');
-                        li.textContent = book.title; // Assuming books have a title property
-                        bookList.appendChild(li);
-                    });
-                })
-                .catch(error => console.error('Error fetching books:', error));
-        }
-    </script>
+    </div> 
 </body>
 </html>

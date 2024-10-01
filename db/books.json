@@ -1,52 +1,314 @@
 [
-    { "id": 1, "title": "The Hobbit", "author_id": 4, "published_year": 1937 },
-    { "id": 2, "title": "Harry Potter and the Sorcerer's Stone", "author_id": 1, "published_year": 1997 },
-    { "id": 3, "title": "A Game of Thrones", "author_id": 2, "published_year": 1996 },
-    { "id": 4, "title": "The Shining", "author_id": 5, "published_year": 1977 },
-    { "id": 5, "title": "Pride and Prejudice", "author_id": 9, "published_year": 1813 },
-    { "id": 6, "title": "A Clash of Kings", "author_id": 2, "published_year": 1998 },
-    { "id": 7, "title": "Murder on the Orient Express", "author_id": 3, "published_year": 1934 },
-    { "id": 8, "title": "The Old Man and the Sea", "author_id": 7, "published_year": 1952 },
-    { "id": 9, "title": "The Fellowship of the Ring", "author_id": 4, "published_year": 1954 },
-    { "id": 10, "title": "The Great Gatsby", "author_id": 8, "published_year": 1925 },
-    { "id": 11, "title": "IT", "author_id": 5, "published_year": 1986 },
-    { "id": 12, "title": "The Green Mile", "author_id": 5, "published_year": 1996 },
-    { "id": 13, "title": "The Return of the King", "author_id": 4, "published_year": 1955 },
-    { "id": 14, "title": "A Storm of Swords", "author_id": 2, "published_year": 2000 },
-    { "id": 15, "title": "Adventures of Huckleberry Finn", "author_id": 6, "published_year": 1884 },
-    { "id": 16, "title": "The Two Towers", "author_id": 4, "published_year": 1954 },
-    { "id": 17, "title": "Fahrenheit 451", "author_id": 16, "published_year": 1953 },
-    { "id": 18, "title": "The Handmaid's Tale", "author_id": 21, "published_year": 1985 },
-    { "id": 19, "title": "The Grapes of Wrath", "author_id": 23, "published_year": 1939 },
-    { "id": 20, "title": "One Hundred Years of Solitude", "author_id": 18, "published_year": 1967 },
-    { "id": 21, "title": "The Bell Jar", "author_id": 43, "published_year": 1963 },
-    { "id": 22, "title": "American Gods", "author_id": 20, "published_year": 2001 },
-    { "id": 23, "title": "War and Peace", "author_id": 11, "published_year": 1869 },
-    { "id": 24, "title": "The Time Machine", "author_id": 25, "published_year": 1895 },
-    { "id": 25, "title": "The Brief Wondrous Life of Oscar Wao", "author_id": 47, "published_year": 2007 },
-    { "id": 26, "title": "A Tale of Two Cities", "author_id": 10, "published_year": 1859 },
-    { "id": 27, "title": "Cloud Atlas", "author_id": 29, "published_year": 2004 },
-    { "id": 28, "title": "Beloved", "author_id": 27, "published_year": 1987 },
-    { "id": 29, "title": "The Color Purple", "author_id": 28, "published_year": 1982 },
-    { "id": 30, "title": "Slaughterhouse-Five", "author_id": 17, "published_year": 1969 },
-    { "id": 31, "title": "The Complete Poems of Emily Dickinson", "author_id": 42, "published_year": 1890 },
-    { "id": 32, "title": "Foundation", "author_id": 15, "published_year": 1951 },
-    { "id": 33, "title": "Half of a Yellow Sun", "author_id": 46, "published_year": 2006 },
-    { "id": 34, "title": "Fight Club", "author_id": 22, "published_year": 1996 },
-    { "id": 35, "title": "The Sound and the Fury", "author_id": 41, "published_year": 1929 },
-    { "id": 36, "title": "No Country for Old Men", "author_id": 30, "published_year": 2005 },
-    { "id": 37, "title": "The Alchemist", "author_id": 1, "published_year": 1988 },
-    { "id": 38, "title": "Ender's Game", "author_id": 49, "published_year": 1985 },
-    { "id": 39, "title": "A Brief History of Time", "author_id": 50, "published_year": 1988 },
-    { "id": 40, "title": "The Invisible Man", "author_id": 25, "published_year": 1897 },
-    { "id": 41, "title": "Midnight's Children", "author_id": 48, "published_year": 1981 },
-    { "id": 42, "title": "Never Let Me Go", "author_id": 45, "published_year": 2005 },
-    { "id": 43, "title": "The Night Circus", "author_id": 50, "published_year": 2011 },
-    { "id": 44, "title": "The Fault in Our Stars", "author_id": 50, "published_year": 2012 },
-    { "id": 45, "title": "The Secret Garden", "author_id": 41, "published_year": 1911 },
-    { "id": 46, "title": "The Girl with the Dragon Tattoo", "author_id": 50, "published_year": 2005 },
-    { "id": 47, "title": "The Poisonwood Bible", "author_id": 28, "published_year": 1998 },
-    { "id": 48, "title": "Moby Dick", "author_id": 13, "published_year": 1851 },
-    { "id": 49, "title": "The Kite Runner", "author_id": 50, "published_year": 2003 },
-    { "id": 50, "title": "A Woman of No Importance", "author_id": 50, "published_year": 1893 }
+  {
+    "id": 1,
+    "title": "The Hobbit",
+    "author_id": 4,
+    "published_year": 1937
+  },
+  {
+    "id": 2,
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "author_id": 1,
+    "published_year": 1997
+  },
+  {
+    "id": 3,
+    "title": "A Game of Thrones",
+    "author_id": 2,
+    "published_year": 1996
+  },
+  {
+    "id": 4,
+    "title": "The Shining",
+    "author_id": 5,
+    "published_year": 1977
+  },
+  {
+    "id": 5,
+    "title": "Pride and Prejudice",
+    "author_id": 9,
+    "published_year": 1813
+  },
+  {
+    "id": 6,
+    "title": "A Clash of Kings",
+    "author_id": 2,
+    "published_year": 1998
+  },
+  {
+    "id": 7,
+    "title": "Murder on the Orient Express",
+    "author_id": 3,
+    "published_year": 1934
+  },
+  {
+    "id": 8,
+    "title": "The Old Man and the Sea",
+    "author_id": 7,
+    "published_year": 1952
+  },
+  {
+    "id": 9,
+    "title": "The Fellowship of the Ring",
+    "author_id": 4,
+    "published_year": 1954
+  },
+  {
+    "id": 10,
+    "title": "The Great Gatsby",
+    "author_id": 8,
+    "published_year": 1925
+  },
+  {
+    "id": 11,
+    "title": "IT",
+    "author_id": 5,
+    "published_year": 1986
+  },
+  {
+    "id": 12,
+    "title": "The Green Mile",
+    "author_id": 5,
+    "published_year": 1996
+  },
+  {
+    "id": 13,
+    "title": "The Return of the King",
+    "author_id": 4,
+    "published_year": 1955
+  },
+  {
+    "id": 14,
+    "title": "A Storm of Swords",
+    "author_id": 2,
+    "published_year": 2000
+  },
+  {
+    "id": 15,
+    "title": "Adventures of Huckleberry Finn",
+    "author_id": 6,
+    "published_year": 1884
+  },
+  {
+    "id": 16,
+    "title": "The Two Towers",
+    "author_id": 4,
+    "published_year": 1954
+  },
+  {
+    "id": 17,
+    "title": "Fahrenheit 451",
+    "author_id": 16,
+    "published_year": 1953
+  },
+  {
+    "id": 18,
+    "title": "The Handmaid's Tale",
+    "author_id": 21,
+    "published_year": 1985
+  },
+  {
+    "id": 19,
+    "title": "The Grapes of Wrath",
+    "author_id": 23,
+    "published_year": 1939
+  },
+  {
+    "id": 20,
+    "title": "One Hundred Years of Solitude",
+    "author_id": 18,
+    "published_year": 1967
+  },
+  {
+    "id": 21,
+    "title": "The Bell Jar",
+    "author_id": 43,
+    "published_year": 1963
+  },
+  {
+    "id": 22,
+    "title": "American Gods",
+    "author_id": 20,
+    "published_year": 2001
+  },
+  {
+    "id": 23,
+    "title": "War and Peace",
+    "author_id": 11,
+    "published_year": 1869
+  },
+  {
+    "id": 24,
+    "title": "The Time Machine",
+    "author_id": 25,
+    "published_year": 1895
+  },
+  {
+    "id": 25,
+    "title": "The Brief Wondrous Life of Oscar Wao",
+    "author_id": 47,
+    "published_year": 2007
+  },
+  {
+    "id": 26,
+    "title": "A Tale of Two Cities",
+    "author_id": 10,
+    "published_year": 1859
+  },
+  {
+    "id": 27,
+    "title": "Cloud Atlas",
+    "author_id": 29,
+    "published_year": 2004
+  },
+  {
+    "id": 28,
+    "title": "Beloved",
+    "author_id": 27,
+    "published_year": 1987
+  },
+  {
+    "id": 29,
+    "title": "The Color Purple",
+    "author_id": 28,
+    "published_year": 1982
+  },
+  {
+    "id": 30,
+    "title": "Slaughterhouse-Five",
+    "author_id": 17,
+    "published_year": 1969
+  },
+  {
+    "id": 31,
+    "title": "The Complete Poems of Emily Dickinson",
+    "author_id": 42,
+    "published_year": 1890
+  },
+  {
+    "id": 32,
+    "title": "Foundation",
+    "author_id": 15,
+    "published_year": 1951
+  },
+  {
+    "id": 33,
+    "title": "Half of a Yellow Sun",
+    "author_id": 46,
+    "published_year": 2006
+  },
+  {
+    "id": 34,
+    "title": "Fight Club",
+    "author_id": 22,
+    "published_year": 1996
+  },
+  {
+    "id": 35,
+    "title": "The Sound and the Fury",
+    "author_id": 41,
+    "published_year": 1929
+  },
+  {
+    "id": 36,
+    "title": "No Country for Old Men",
+    "author_id": 30,
+    "published_year": 2005
+  },
+  {
+    "id": 37,
+    "title": "The Alchemist",
+    "author_id": 1,
+    "published_year": 1988
+  },
+  {
+    "id": 38,
+    "title": "Ender's Game",
+    "author_id": 49,
+    "published_year": 1985
+  },
+  {
+    "id": 39,
+    "title": "A Brief History of Time",
+    "author_id": 50,
+    "published_year": 1988
+  },
+  {
+    "id": 40,
+    "title": "The Invisible Man",
+    "author_id": 25,
+    "published_year": 1897
+  },
+  {
+    "id": 41,
+    "title": "Midnight's Children",
+    "author_id": 48,
+    "published_year": 1981
+  },
+  {
+    "id": 42,
+    "title": "Never Let Me Go",
+    "author_id": 45,
+    "published_year": 2005
+  },
+  {
+    "id": 43,
+    "title": "The Night Circus",
+    "author_id": 50,
+    "published_year": 2011
+  },
+  {
+    "id": 44,
+    "title": "The Fault in Our Stars",
+    "author_id": 50,
+    "published_year": 2012
+  },
+  {
+    "id": 45,
+    "title": "The Secret Garden",
+    "author_id": 41,
+    "published_year": 1911
+  },
+  {
+    "id": 46,
+    "title": "The Girl with the Dragon Tattoo",
+    "author_id": 50,
+    "published_year": 2005
+  },
+  {
+    "id": 47,
+    "title": "The Poisonwood Bible",
+    "author_id": 28,
+    "published_year": 1998
+  },
+  {
+    "id": 48,
+    "title": "Moby Dick",
+    "author_id": 13,
+    "published_year": 1851
+  },
+  {
+    "id": 49,
+    "title": "The Kite Runner",
+    "author_id": 50,
+    "published_year": 2003
+  },
+  {
+    "id": 50,
+    "title": "A Woman of No Importance",
+    "author_id": 50,
+    "published_year": 1893
+  },
+  {
+    "id": 51,
+    "title": "Gathering Blue",
+    "author_id": 51,
+    "published_year": 1998
+  },
+  {
+    "id": 52,
+    "title": "Gathering Blue",
+    "author_id": 51,
+    "published_year": 1998
+  }
 ]
