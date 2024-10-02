@@ -127,28 +127,6 @@ app.get('/api/books/delete/:title/:token', (req, res) => {
     res.status(200).json({ message: 'Book removed successfully', book: removedBook });
 });
 
-app.get('/api/v1/query', (req, res) => {
-    console.log(req.query);
-    const books = getBooks();
-    const { search, limit } = req.query;
-    let sortedBooks = [...books];
-
-    if (search) {
-        sortedBooks = sortedBooks.filter((book) => {
-            return book.name && book.name.toLowerCase().includes(search.toLowerCase());
-        });
-    }
-    
-    if (limit) {
-        sortedBooks = sortedBooks.slice(0, Number(limit));
-    }
-    
-    if (sortedBooks.length < 1) {
-        return res.status(200).json({ success: false, data: [] });
-    }
-    
-    res.status(200).json({ success: true, data: sortedBooks });
-});
 
 app.listen(PORT, () => {
     console.log(`Server is on port ${PORT}`);
