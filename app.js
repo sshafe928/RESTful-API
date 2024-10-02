@@ -29,6 +29,10 @@ const saveBooks = (newBook) => {
     fs.writeFileSync('./db/books.json', JSON.stringify(books, null, 2));
 };
 
+const updateBooksList = (books) => {
+    fs.writeFileSync('./db/books.json', JSON.stringify(books, null, 2));
+};
+
 const saveAuthors = (authors) => {
     fs.writeFileSync('./db/authors.json', JSON.stringify(authors, null, 2));
 };
@@ -98,25 +102,53 @@ app.get('/api/books/add/:title/:authorName/:published_year/:token', (req, res) =
     res.status(201).json({ message: 'Book added successfully', book: newBook });
 });
 
+app.get('/api/books/delete/:title/:token', (req, res) => {
+    const books = getBooks(); 
 
-app.get('/api/books/delete/:title/:published_year/:token', (req, res) => {
-    const books = getBooks(); // Get existing books
-
-    const { title, published_year, token } = req.params;
-
-    // Check for admin token
+    const { title, token } = req.params;
     if (token !== AdminToken) {
         return res.status(403).json({ message: 'No Permissions' });
     }
 
-    const newBook = {id: books.length + 1, title, author_id: authorId, published_year: parseInt(published_year)};
+    // Find the book by title
+    const bookIndex = books.findIndex(book => book.title.toLowerCase() === title.toLowerCase());
 
-    saveBooks(newBook); // Save the new book
+    if (bookIndex === -1) {
+        return res.status(404).json({ message: 'Book not found' });
+    }
+
+    // Remove the book from the array
+    const [removedBook] = books.splice(bookIndex, 1);
+
+    // Save the updated books list back to your data store
+    updateBooksList(books);
 
     // Send a success response
-    res.status(201).json({ message: 'Book added successfully', book: newBook });
+    res.status(200).json({ message: 'Book removed successfully', book: removedBook });
 });
 
+app.get('/api/v1/query', (req, res) => {
+    console.log(req.query);
+    const books = getBooks();
+    const { search, limit } = req.query;
+    let sortedBooks = [...books];
+
+    if (search) {
+        sortedBooks = sortedBooks.filter((book) => {
+            return book.name && book.name.toLowerCase().includes(search.toLowerCase());
+        });
+    }
+    
+    if (limit) {
+        sortedBooks = sortedBooks.slice(0, Number(limit));
+    }
+    
+    if (sortedBooks.length < 1) {
+        return res.status(200).json({ success: false, data: [] });
+    }
+    
+    res.status(200).json({ success: true, data: sortedBooks });
+});
 
 app.listen(PORT, () => {
     console.log(`Server is on port ${PORT}`);

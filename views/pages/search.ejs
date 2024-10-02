@@ -10,16 +10,6 @@
     <%- include('../partials/header')%>
     
 
-        <div class="book-list">
-            <ul id="bookList">
-                <% books.forEach(book => { %>
-                    <li>
-                        <strong><%= book.title %></strong> by <%= book.authorName %> (Published: <%= book.published_year %>)
-                    </li>
-                <% }) %>
-            </ul>
-        </div>
-
     </div> 
 </body>
 </html>
