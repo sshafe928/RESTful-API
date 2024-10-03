@@ -127,6 +127,65 @@ app.get('/api/books/delete/:title/:token', (req, res) => {
     res.status(200).json({ message: 'Book removed successfully', book: removedBook });
 });
 
+app.get('/api/v1/book/query', (req, res) => {
+    console.log(req.query);
+    const { search, limit } = req.query;
+    let sortedBooks = getBooks(); // Assuming getBooks() returns an array of book objects
+
+    if (search) {
+        // Convert search term to lowercase for case-insensitive comparison
+        const searchLower = search.toLowerCase();
+
+        // Filter books by title or author
+        sortedBooks = sortedBooks.filter((book) => {
+            return book.title.toLowerCase().includes(searchLower) 
+                    
+        });
+    }
+
+    if (limit) {
+        sortedBooks = sortedBooks.slice(0, Number(limit));
+    }
+
+    // Return response
+    if (sortedBooks.length < 1) {
+        return res.status(200).json({ success: true, data: [] });
+    }
+
+    res.status(200).json({ success: true, data: sortedBooks });
+});
+
+
+app.get('/api/v1/Author/query', (req, res) => {
+    console.log(req.query);
+    const { search, limit } = req.query;
+    let sortedAuthors = getAuthors(); 
+
+    if (search) {
+        const searchLower = search.toLowerCase();
+
+        // Filter books by title or author
+        sortedAuthors = sortedAuthors.filter((author) => {
+            return author.toLowerCase().includes(searchLower);
+                    
+        });
+    }
+
+    if (limit) {
+        sortedAuthors = sortedAuthors.slice(0, Number(limit));
+    }
+
+    // Return response
+    if (sortedAuthors.length < 1) {
+        return res.status(200).json({ success: true, data: [] });
+    }
+
+    res.status(200).json({ success: true, data: sortedAuthors });
+});
+
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is on port ${PORT}`);
