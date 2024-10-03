@@ -10,4 +10,34 @@
 }
 
 
+.Function {
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Spacing inside the box */
+    margin: 16px 0; /* Spacing between sections */
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
 
+.title {
+    font-size: 1.5em; /* Larger font for titles */
+    font-weight: bold; /* Bold text */
+    color: #333; /* Dark text color */
+    margin-bottom: 8px; /* Spacing below the title */
+}
+
+.code {
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for code */
+    background-color: #e7f3fe; /* Light blue background for code */
+    padding: 8px; /* Padding around the code */
+    border-radius: 4px; /* Slightly rounded corners */
+    border: 1px solid #a1c6ea; /* Light blue border */
+    display: block; /* Ensures it takes full width */
+    margin-bottom: 8px; /* Spacing below the code */
+}
+
+.desc {
+    font-size: 1em; /* Normal font size for description */
+    color: #555; /* Gray text color */
+    line-height: 1.5; /* Spacing between lines */
+}

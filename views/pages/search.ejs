@@ -10,6 +10,47 @@
     <%- include('../partials/header')%>
     
 
-    </div> 
+    <div class="Function">
+        <div class="title">Displaying all books:</div>
+        <div class="code">/books</div>
+        <div class="desc"></div>
+    </div>
+
+    <div class="Function">
+        <div class="title">Finding Book by ID:</div>
+        <div class="code">/api/books/:bookID</div>
+        <div class="desc"></div>
+    </div>
+
+    <div class="Function">
+        <div class="title">Creating New Books:</div>
+        <div class="code">/api/books/add/:title/:authorName/:published_year/:token</div>
+        <div class="desc"></div>
+    </div>
+
+    <div class="Function">
+        <div class="title">Deleting Books:</div>
+        <div class="code">/api/books/delete/:title/:token</div>
+        <div class="desc"></div>
+    </div>
+
+    <div class="Function">
+        <div class="title">Finding books:</div>
+        <div class="code">/api/v1/book/query</div>
+        <div class="desc"></div>
+    </div>
+
+    <div class="Function">
+        <div class="title">Finding Authors books:</div>
+        <div class="code">/api/v2/author/query</div>
+        <div class="desc"></div>
+    </div>
+
+    <div class="Function">
+        <div class="title">Update / Edit:</div>
+        <div class="code">/api/books/edit/:title/:authorName/:published_year/:token</div>
+        <div class="desc"></div>
+    </div>
+
 </body>
 </html>

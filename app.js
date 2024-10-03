@@ -133,13 +133,11 @@ app.get('/api/v1/book/query', (req, res) => {
     let sortedBooks = getBooks(); // Assuming getBooks() returns an array of book objects
 
     if (search) {
-        // Convert search term to lowercase for case-insensitive comparison
         const searchLower = search.toLowerCase();
 
-        // Filter books by title or author
+        // Filter books by title (case-insensitive)
         sortedBooks = sortedBooks.filter((book) => {
-            return book.title.toLowerCase().includes(searchLower) 
-                    
+            return String(book.title).toLowerCase().includes(searchLower);
         });
     }
 
@@ -156,31 +154,37 @@ app.get('/api/v1/book/query', (req, res) => {
 });
 
 
-app.get('/api/v1/Author/query', (req, res) => {
+app.get('/api/v2/author/query', (req, res) => {
     console.log(req.query);
     const { search, limit } = req.query;
-    let sortedAuthors = getAuthors(); 
+    let sortedAuthors = getAuthors(); // Assuming getAuthors() returns an array of author objects
+    let books = getBooks(); // Assuming getBooks() returns an array of book objects
 
     if (search) {
         const searchLower = search.toLowerCase();
 
-        // Filter books by title or author
+        // Filter authors by name (case-insensitive)
         sortedAuthors = sortedAuthors.filter((author) => {
-            return author.toLowerCase().includes(searchLower);
-                    
+            return String(author.name).toLowerCase().includes(searchLower);
         });
     }
 
+    // Collect author IDs
+    const authorIds = sortedAuthors.map(author => author.id); // Adjust `id` as necessary
+
+    // Find books by matching author IDs
+    const matchedBooks = books.filter(book => authorIds.includes(book.author_id)); // Adjust `author_id` as necessary
+
     if (limit) {
-        sortedAuthors = sortedAuthors.slice(0, Number(limit));
+        matchedBooks = matchedBooks.slice(0, Number(limit));
     }
 
     // Return response
-    if (sortedAuthors.length < 1) {
+    if (matchedBooks.length < 1) {
         return res.status(200).json({ success: true, data: [] });
     }
 
-    res.status(200).json({ success: true, data: sortedAuthors });
+    res.status(200).json({ success: true, data: matchedBooks });
 });
 
 
