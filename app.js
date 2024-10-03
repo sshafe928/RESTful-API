@@ -6,6 +6,8 @@ const PORT = 5000;
 const path = require('path');
 const AdminToken = 'admin404'; // Use const for constants
 
+app.set('json spaces', 4);
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
