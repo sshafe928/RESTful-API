@@ -4,56 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
-    <header>
+    <header class="header-title">
         <h1>Booklist</h1>
     
     </header>
     
-
-    <div class="Function">
+<main>
+    <div data-aos="fade-right" class="Function">
         <div class="title">Displaying all books:</div>
         <div class="code">/books</div>
         <div class="desc">Should return JSON list of all of the books in the database.</div>
     </div>
 
-    <div class="Function">
+    <div data-aos="fade-left" class="Function">
         <div class="title">Finding Book by ID:</div>
         <div class="code">/api/books/:bookID</div>
         <div class="desc">By putting this in with an existing book ID, you will get a JSON object will all of the book information. </div>
     </div>
 
-    <div class="Function">
+    <div data-aos="fade-right" class="Function">
         <div class="title">Creating New Books:</div>
         <div class="code">/api/books/add/:title/:authorName/:published_year/:token</div>
         <div class="desc">You will fill in the title, author name, publishing year, and the admin token and a new book will be added to the database.</div>
     </div>
 
-    <div class="Function">
+    <div data-aos="fade-left" class="Function">
         <div class="title">Deleting Books:</div>
         <div class="code">/api/books/delete/:title/:token</div>
         <div class="desc">By entering the title and admin token the book will be deleted from the database.</div>
     </div>
 
-    <div class="Function">
+    <div data-aos="fade-right" class="Function">
         <div class="title">Finding books:</div>
         <div class="code">/api/v1/book/query</div>
         <div class="desc">By putting in a name or word found in a book title all books will appear. </div>
     </div>
 
-    <div class="Function">
+    <div data-aos="fade-left" class="Function">
         <div class="title">Finding Authors books:</div>
         <div class="code">/api/v2/author/query</div>
         <div class="desc">By entering an authors name all books entered under that author will be returned.</div>
     </div>
 
-    <div class="Function">
+    <div data-aos="fade-right" class="Function">
         <div class="title">Update / Edit:</div>
-        <div class="code">/api/books/edit/:title/:authorName/:published_year/:token</div>
-        <div class="desc">Put in the book title and adjust anything from the book. In the order title, author name,published year, and admin token.</div>
+        <div class="code">/api/books/update/:title/:newTitle/:newAuthorName/:newPublishedYear/:token</div>
+        <div class="desc">Put in the book title and adjust anything from the book. In the order new title, new author name, new published year, and admin token.</div>
     </div>
 
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init(); // Initialize AOS
+</script>
 </body>
 </html>

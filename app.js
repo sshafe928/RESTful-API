@@ -189,6 +189,56 @@ app.get('/api/v2/author/query', (req, res) => {
     res.status(200).json({ success: true, data: matchedBooks });
 });
 
+app.put('/api/books/update/:title/:newTitle/:newAuthorName/:newPublishedYear/:token', (req, res) => {
+    const books = getBooks(); 
+    const authors = getAuthors(); 
+
+    const { title, newTitle, newAuthorName, newPublishedYear, token } = req.params;
+
+    // Check for admin token
+    if (token !== AdminToken) {
+        return res.status(403).json({ message: 'No Permissions' });
+    }
+
+    // Find the book by the old title
+    const bookIndex = books.findIndex(book => book.title.toLowerCase() === title.toLowerCase());
+
+    if (bookIndex === -1) {
+        return res.status(404).json({ message: 'Book not found' });
+    }
+
+    // Check for the existing author
+    const existingAuthor = authors.find(author => author.name.toLowerCase() === newAuthorName.toLowerCase());
+
+    let authorId;
+    if (existingAuthor) {
+        authorId = existingAuthor.id;
+    } else {
+        // If the author does not exist, add the new author
+        authorId = authors.length + 1; 
+        authors.push({ id: authorId, name: newAuthorName });
+        
+        // Save updated authors to the JSON file
+        saveAuthors(authors);
+    }
+
+    // Update the book details
+    const updatedBook = {
+        ...books[bookIndex],
+        title: newTitle,
+        author_id: authorId,
+        published_year: parseInt(newPublishedYear)
+    };
+
+    books[bookIndex] = updatedBook;
+
+    // Save the updated books list back to your data store
+    updateBooksList(books);
+
+    // Send a success response
+    res.status(200).json({ message: 'Book updated successfully', book: updatedBook });
+});
+
 
 
 
